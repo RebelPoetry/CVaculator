@@ -11,9 +11,8 @@ import SwiftUI
 struct CVaculatorApp: App {
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-            //dgfdg
-            //sd;.f
-        }//
+            
+            
+        }
     }
 }
