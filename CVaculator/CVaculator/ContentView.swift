@@ -7,60 +7,73 @@
 
 import SwiftUI
 
-enum CalcButton: String {
-    case zero = "0"
-    case one = "1"
-    case two = "2"
-    case three = "3"
-    case four = "4"
-    case five = "5"
-    case six = "6"
-    case seven = "7"
-    case eight = "8"
-    case nine = "9"
-    case point = "."
-    case division = "/"
-    case addition = "+"
-    case subtruction = "-"
-    case multiplication = "X"
-    case equal = "="
-    case percent = "%"
-    case clear = "C"
-    case power = "^"
+enum CalcButton {
+
+    case digit(Character)
+    case maximJopaTolstaya
+    case percent, multiplication, clear, addition, division, power, equal, point
+    
+    var title: String {
+        switch self {
+        case .digit(let character):
+            return String(character)
+        case .maximJopaTolstaya:
+            return "-"
+        case .power:
+            return "^"
+        case .percent:
+            return "%"
+        case .division:
+            return "/"
+        case .multiplication:
+            return "×"
+        case .clear:
+            return "C"
+        case .addition:
+            return "+"
+        case .equal:
+            return "="
+        case .point:
+            return "."
+        }
+    }
+
+    
     
     var buttonColor: Color {
         switch self {
-        case .clear, .percent, .multiplication, .subtruction, .addition, .division, .power:
-            return Color.gray
+        case .clear, .percent, .multiplication, .maximJopaTolstaya, .addition, .division, .power:
+            return Color.gray.opacity(0.38)
         case .equal:
             return Color.orange
         default:
-            return Color.black
+            return Color.orange
         }
     }
     var buttonHeight: CGFloat {
-        return ((UIScreen.main.bounds.width - 48) / 4)
+        return ((UIScreen.main.bounds.width - 5 * PConstants.buttonSpacing) / 4)
     }
     var buttonWidth: CGFloat {
         switch self {
         case .equal:
-            return ((UIScreen.main.bounds.width - 48) / 2) + 12
+            return ((UIScreen.main.bounds.width - 5 * PConstants.buttonSpacing) / 2) + 12
         default:
-            return ((UIScreen.main.bounds.width - 48) / 4)
+            return ((UIScreen.main.bounds.width - 5 * PConstants.buttonSpacing) / 4)
         }
     }
 }
 
-
-
 struct ContentView: View {
+    static let buttonSpacing: CGFloat = 12
+    
     @State var result = 0
+    
     let buttons: [[CalcButton]] = [
         [.clear, .power, .percent, .division],
-        [.seven, .eight, .nine, .multiplication],
-        [.four, .five, .six, .subtruction],
-        [.one, .two, .three, .addition],
-        [.zero, .point, .equal]
+        [.digit("7"), .digit("8"), .digit("9"), .multiplication],
+        [.digit("4"), .digit("5"), .digit("6"), .maximJopaTolstaya],
+        [.digit("1"), .digit("2"), .digit("3"), .addition],
+        [.digit("0"), .point, .equal]
     ]
     var body: some View {
         ZStack{
@@ -78,7 +91,7 @@ struct ContentView: View {
                 }
                 .padding()
                 ForEach(buttons, id: \.self) { row in
-                    HStack(spacing: 12) {
+                    HStack(spacing: PConstants.buttonSpacing) {
                         ForEach(row, id: \.self) { item in
                             Button(action: {
                                 
@@ -98,7 +111,9 @@ struct ContentView: View {
     }
 }
 
-
+private struct PConstants {
+    static let buttonSpacing: CGFloat = 12
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
