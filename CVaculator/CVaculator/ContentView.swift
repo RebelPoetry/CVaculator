@@ -4,7 +4,7 @@
 //
 //  Created by Kazakh on 26.06.2022.
 // https://dribbble.com/shots/8295078-004-Calculator
-
+//
 import SwiftUI
 
 enum CalcButton {
@@ -90,13 +90,13 @@ struct ContentView: View {
                     
                 }
                 .padding()
-                ForEach(buttons, id: \.self) { row in
+                ForEach(buttons.indices, id: \.self) { row in
                     HStack(spacing: PConstants.buttonSpacing) {
-                        ForEach(row, id: \.self) { item in
+                        ForEach(buttons[row], id: \.title) { item in
                             Button(action: {
                                 
                             }, label: {
-                                Text(item.rawValue)
+                                Text(item.title)
                                     .font(.system(size: 50))
                                     .frame(width: item.buttonWidth, height: item.buttonHeight)
                                     .background(item.buttonColor)
