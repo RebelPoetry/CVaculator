@@ -86,6 +86,7 @@ struct ContentView: View {
                         .bold()
                         .font(.system(size: 100))
                         .foregroundColor(.white)
+                        .minimumScaleFactor(0.38)
                     
                 }
                 .padding()
@@ -97,18 +98,14 @@ struct ContentView: View {
                                 case .equal:
                                     expression = "\(calculateRPN(toRPN(parse(expression))))"
                                     calcDisplay = "\(calculateRPN(toRPN(parse(expression))))"
-                                case .point:
-                                    expression += item.title
-                                    calcDisplay += item.title
-                                case .digit:
-                                    expression += item.title
-                                    calcDisplay += item.title
                                 case .clear:
                                     expression = ""
                                     calcDisplay = ""
+                                case .percent:
+                                    calcDisplay = "Введите полезную операцию!"
                                 default:
                                     expression += item.title
-                                    calcDisplay = item.title
+                                    calcDisplay += item.title
                                 }
                             }, label: {
                                 Text(item.title)
@@ -117,6 +114,7 @@ struct ContentView: View {
                                     .background(item.buttonColor)
                                     .foregroundColor(.white)
                                     .cornerRadius(item.buttonHeight/2)
+                                    .minimumScaleFactor(0.38)
                             })
                         }
                     }
