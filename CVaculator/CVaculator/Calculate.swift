@@ -1,10 +1,3 @@
-//
-//  Parser.swift
-//  CVaculator
-//
-//  Created by Kazakh on 27.06.2022.
-//
-
 import Foundation
 
 
@@ -56,7 +49,7 @@ enum BinaryOperation: String, CaseIterable, Equatable {
     case division = "/"
     case addition = "+"
     case subtruction = "-"
-    case multiplication = "*"
+    case multiplication = "×"
 
     var priority: Int {
         switch self {
@@ -129,7 +122,7 @@ enum Token: Equatable, CustomDebugStringConvertible {
     }
 }
 
-func parse(expression: String) -> [Token] {
+func parse(_ expression: String) -> [Token] {
     var str = expression
     var result: [Token] = []
     var number = ""
@@ -166,7 +159,7 @@ func parse(expression: String) -> [Token] {
     return result
 }
 
-func toRPN(expression: [Token]) -> [Token] {
+func toRPN(_ expression: [Token]) -> [Token] {
 
     var result: [Token] = []
 
@@ -206,7 +199,7 @@ for element in expression {
 }
 
 
-func calculateRPN(expression: [Token]) -> Double {
+func calculateRPN(_ expression: [Token]) -> Double {
 
     var stack = Stack<Double>()
 

@@ -11,7 +11,7 @@
 		C07322E32868D9FA00F3F236 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07322E22868D9FA00F3F236 /* ContentView.swift */; };
 		C07322E52868D9FB00F3F236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07322E42868D9FB00F3F236 /* Assets.xcassets */; };
 		C07322E82868D9FB00F3F236 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07322E72868D9FB00F3F236 /* Preview Assets.xcassets */; };
-		C0F7A8F0286A1802000F7499 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7A8EF286A1802000F7499 /* Parser.swift */; };
+		C0F7A8F0286A1802000F7499 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7A8EF286A1802000F7499 /* Calculate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,7 +20,7 @@
 		C07322E22868D9FA00F3F236 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C07322E42868D9FB00F3F236 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C07322E72868D9FB00F3F236 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C0F7A8EF286A1802000F7499 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		C0F7A8EF286A1802000F7499 /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				C07322E02868D9FA00F3F236 /* CVaculatorApp.swift */,
-				C0F7A8EF286A1802000F7499 /* Parser.swift */,
+				C0F7A8EF286A1802000F7499 /* Calculate.swift */,
 				C07322E22868D9FA00F3F236 /* ContentView.swift */,
 				C07322E42868D9FB00F3F236 /* Assets.xcassets */,
 				C07322E62868D9FB00F3F236 /* Preview Content */,
@@ -142,7 +142,7 @@
 			files = (
 				C07322E32868D9FA00F3F236 /* ContentView.swift in Sources */,
 				C07322E12868D9FA00F3F236 /* CVaculatorApp.swift in Sources */,
-				C0F7A8F0286A1802000F7499 /* Parser.swift in Sources */,
+				C0F7A8F0286A1802000F7499 /* Calculate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

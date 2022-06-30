@@ -37,9 +37,6 @@ enum CalcButton {
             return "."
         }
     }
-
-    
-    
     var buttonColor: Color {
         switch self {
         case .clear, .percent, .multiplication, .maximJopaTolstaya, .addition, .division, .power:
@@ -63,11 +60,12 @@ enum CalcButton {
     }
 }
 
+
 struct ContentView: View {
     static let buttonSpacing: CGFloat = 12
     
-    @State var result = 0
-    
+    @State var calcDisplay = ""
+    @State var expression = ""
     let buttons: [[CalcButton]] = [
         [.clear, .power, .percent, .division],
         [.digit("7"), .digit("8"), .digit("9"), .multiplication],
@@ -75,6 +73,7 @@ struct ContentView: View {
         [.digit("1"), .digit("2"), .digit("3"), .addition],
         [.digit("0"), .point, .equal]
     ]
+
     var body: some View {
         ZStack{
             Color.black.edgesIgnoringSafeArea(.all)
@@ -83,18 +82,34 @@ struct ContentView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Text("\(result)")
+                    Text("\(calcDisplay)")
                         .bold()
                         .font(.system(size: 100))
                         .foregroundColor(.white)
                     
                 }
                 .padding()
-                ForEach(buttons.indices, id: \.self) { row in
+                ForEach(buttons.indices, id: \.self) { index in
                     HStack(spacing: PConstants.buttonSpacing) {
-                        ForEach(buttons[row], id: \.title) { item in
+                        ForEach(buttons[index], id: \.title) { item in
                             Button(action: {
-                                
+                                switch item {
+                                case .equal:
+                                    expression = "\(calculateRPN(toRPN(parse(expression))))"
+                                    calcDisplay = "\(calculateRPN(toRPN(parse(expression))))"
+                                case .point:
+                                    expression += item.title
+                                    calcDisplay += item.title
+                                case .digit:
+                                    expression += item.title
+                                    calcDisplay += item.title
+                                case .clear:
+                                    expression = ""
+                                    calcDisplay = ""
+                                default:
+                                    expression += item.title
+                                    calcDisplay = item.title
+                                }
                             }, label: {
                                 Text(item.title)
                                     .font(.system(size: 50))
@@ -120,3 +135,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
