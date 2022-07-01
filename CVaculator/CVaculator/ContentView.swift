@@ -7,6 +7,8 @@
 //
 import SwiftUI
 
+// MARK: - CalcButton
+
 enum CalcButton {
 
     case digit(Character)
@@ -60,7 +62,7 @@ enum CalcButton {
     }
 }
 
-
+// MARK: - ContentView
 struct ContentView: View {
     static let buttonSpacing: CGFloat = 12
     
@@ -93,22 +95,38 @@ struct ContentView: View {
                 ForEach(buttons.indices, id: \.self) { index in
                     HStack(spacing: PConstants.buttonSpacing) {
                         ForEach(buttons[index], id: \.title) { item in
-                            Button(action: {
+                            Button(action: {  // MARK: - Button actions
                                 switch item {
                                 case .equal:
-                                    expression = "\(calculateRPN(toRPN(parse(expression))))"
-                                    calcDisplay = "\(calculateRPN(toRPN(parse(expression))))"
+                                    let a = calculateRPN(toRPN(parse(expression)))
+                                    expression = "\(a)"
+                                    if a.truncatingRemainder(dividingBy: 1) == 0 {
+                                    calcDisplay = "\(Int(a))"
+                                    } else { calcDisplay = "\(a)"}
                                 case .clear:
                                     expression = ""
                                     calcDisplay = ""
                                 case .percent:
-                                    calcDisplay = "Введите полезную операцию!"
-                                default:
+                                    calcDisplay = "Введите полезную операцию! Для продолжения нажмите С или ="
+                                case .digit:
+                                    if calcDisplay != "Введите полезную операцию! Для продолжения нажмите С или =" {
                                     expression += item.title
                                     calcDisplay += item.title
+                                    }
+                                case .point:
+                                    if let b = expression.last, b.isHexDigit{
+                                    if !calcDisplay.isEmpty, calcDisplay != "Введите полезную операцию! Для продолжения нажмите С или ="{
+                                    expression += item.title
+                                    calcDisplay += item.title
+                                    }}
+                                default:
+                                    if !calcDisplay.isEmpty, calcDisplay != "Введите полезную операцию! Для продолжения нажмите С или =" {
+                                    expression += item.title
+                                    calcDisplay += item.title
+                                    }
                                 }
                             }, label: {
-                                Text(item.title)
+                                Text(item.title) //MARK: - Button text
                                     .font(.system(size: 50))
                                     .frame(width: item.buttonWidth, height: item.buttonHeight)
                                     .background(item.buttonColor)
@@ -123,14 +141,15 @@ struct ContentView: View {
         }
     }
 }
+// MARK: - PConstants
 
 private struct PConstants {
     static let buttonSpacing: CGFloat = 12
 }
 
+// MARK: - ContentView_Previews
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
-
