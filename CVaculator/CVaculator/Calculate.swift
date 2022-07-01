@@ -122,7 +122,7 @@ enum Token: Equatable, CustomDebugStringConvertible {
     }
 }
  
-// MARK: - parse
+// MARK: - Parse
 
 func parse(_ expression: String) -> [Token] {
     var str = expression
@@ -160,7 +160,7 @@ func parse(_ expression: String) -> [Token] {
     }
     return result
 }
-// MARK: - toRPN
+// MARK: - ToRPN
 
 func toRPN(_ expression: [Token]) -> [Token] {
 
@@ -201,7 +201,7 @@ for element in expression {
     return result
 }
 
-// MARK: - calculateRPN
+// MARK: - CalculateRPN
 
 func calculateRPN(_ expression: [Token]) -> Double {
 

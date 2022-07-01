@@ -12,14 +12,13 @@ import SwiftUI
 enum CalcButton {
 
     case digit(Character)
-    case maximJopaTolstaya
-    case percent, multiplication, clear, addition, division, power, equal, point
+    case percent, multiplication, clear, addition, division, power, equal, point, subtruction
     
     var title: String {
         switch self {
         case .digit(let character):
             return String(character)
-        case .maximJopaTolstaya:
+        case .subtruction:
             return "-"
         case .power:
             return "^"
@@ -41,7 +40,7 @@ enum CalcButton {
     }
     var buttonColor: Color {
         switch self {
-        case .clear, .percent, .multiplication, .maximJopaTolstaya, .addition, .division, .power:
+        case .clear, .percent, .multiplication, .subtruction, .addition, .division, .power:
             return Color.gray.opacity(0.38)
         case .equal:
             return Color.orange
@@ -71,7 +70,7 @@ struct ContentView: View {
     let buttons: [[CalcButton]] = [
         [.clear, .power, .percent, .division],
         [.digit("7"), .digit("8"), .digit("9"), .multiplication],
-        [.digit("4"), .digit("5"), .digit("6"), .maximJopaTolstaya],
+        [.digit("4"), .digit("5"), .digit("6"), .subtruction],
         [.digit("1"), .digit("2"), .digit("3"), .addition],
         [.digit("0"), .point, .equal]
     ]
@@ -95,7 +94,7 @@ struct ContentView: View {
                 ForEach(buttons.indices, id: \.self) { index in
                     HStack(spacing: PConstants.buttonSpacing) {
                         ForEach(buttons[index], id: \.title) { item in
-                            Button(action: {  // MARK: - Button actions
+                            Button(action: {
                                 switch item {
                                 case .equal:
                                     let a = calculateRPN(toRPN(parse(expression)))
@@ -126,7 +125,7 @@ struct ContentView: View {
                                     }
                                 }
                             }, label: {
-                                Text(item.title) //MARK: - Button text
+                                Text(item.title)
                                     .font(.system(size: 50))
                                     .frame(width: item.buttonWidth, height: item.buttonHeight)
                                     .background(item.buttonColor)
