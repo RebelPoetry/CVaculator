@@ -163,11 +163,8 @@ func parse(_ expression: String) -> [Token] {
 // MARK: - ToRPN
 
 func toRPN(_ expression: [Token]) -> [Token] {
-
     var result: [Token] = []
-
     var stack = Stack<Token>()
-    
     
 for element in expression {
         switch element {
@@ -204,7 +201,6 @@ for element in expression {
 // MARK: - CalculateRPN
 
 func calculateRPN(_ expression: [Token]) -> Double {
-
     var stack = Stack<Double>()
 
     for element in expression {
